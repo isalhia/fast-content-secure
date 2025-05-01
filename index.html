@@ -1,0 +1,81 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Fast Content AI Portal</title>
+    <style>
+        body { background: #121212; color: #fff; font-family: Arial; padding: 40px; text-align: center; }
+        h1 { color: #00ffd5; }
+        textarea, #editableScript { width: 80%; padding: 12px; font-size: 16px; border-radius: 6px; margin-top: 10px; }
+        .button { padding: 12px 24px; margin: 8px; font-weight: bold; border-radius: 5px; border: none; cursor: pointer; background: #00ffd5; color: #000; }
+        .button:hover { background: #00c7ac; }
+        .output, .imageBox { background: #1e1e1e; padding: 20px; border-radius: 6px; margin-top: 20px; white-space: pre-wrap; }
+        img { margin-top: 15px; max-width: 90%; border-radius: 8px; }
+    </style>
+</head>
+<body>
+    <h1>Fast Content AI Portal</h1>
+    <textarea id="prompt" placeholder="Enter your story idea..."></textarea><br>
+    <button class="button" onclick="callAPI('storyline')">Start Storyline</button>
+    <button class="button" onclick="callAPI('summary')">Generate Summary</button>
+    <button class="button" onclick="callAPI('script')">Generate Script</button>
+    <button class="button" onclick="callAPI('storyboard')">Create Storyboard</button><br>
+    <textarea id="editableScript" style="display:none;" rows="10"></textarea>
+    <button class="button" style="display:none;" id="resubmitBtn" onclick="resubmitScript()">Send for Revision</button>
+    <div class="output" id="outputBox"></div>
+    <div class="imageBox" id="imageBox"></div>
+
+    <script>
+        async function callAPI(type) {
+            const prompt = document.getElementById("prompt").value;
+            const outputBox = document.getElementById("outputBox");
+            const editable = document.getElementById("editableScript");
+            const button = document.getElementById("resubmitBtn");
+            const imageBox = document.getElementById("imageBox");
+
+            outputBox.innerText = "Generating...";
+            editable.style.display = "none";
+            button.style.display = "none";
+            imageBox.innerHTML = "";
+
+            const response = await fetch(`/api/${type}`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ prompt })
+            });
+
+            const data = await response.json();
+
+            if (type === "storyboard") {
+                const img = document.createElement("img");
+                img.src = "data:image/png;base64," + data.image;
+                imageBox.appendChild(img);
+                outputBox.innerText = "";
+            } else if (type === "script") {
+                editable.value = data.output || data.error || "No output";
+                editable.style.display = "block";
+                button.style.display = "inline-block";
+                outputBox.innerText = "";
+            } else {
+                outputBox.innerText = data.output || JSON.stringify(data, null, 2);
+            }
+        }
+
+        async function resubmitScript() {
+            const prompt = document.getElementById("editableScript").value;
+            const outputBox = document.getElementById("outputBox");
+            outputBox.innerText = "Revising...";
+
+            const response = await fetch(`/api/script`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ prompt })
+            });
+
+            const data = await response.json();
+            outputBox.innerText = data.output || "Revision failed.";
+        }
+    </script>
+</body>
+</html>
