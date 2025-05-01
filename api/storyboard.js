@@ -24,14 +24,19 @@ export default async function handler(req, res) {
     });
 
     const json = await result.json();
+    console.log("Stability response:", json);
+
     if (!json.artifacts || !json.artifacts[0] || !json.artifacts[0].base64) {
-      return res.status(500).json({ error: "No image generated or missing base64 format." });
+      return res.status(500).json({ 
+        error: "No image returned from Stability AI.",
+        stabilityResponse: json 
+      });
     }
 
     res.status(200).json({ image: json.artifacts[0].base64 });
 
   } catch (e) {
-    console.error("Storyboard error:", e);
-    res.status(500).json({ error: "Storyboard error", message: e.message });
+    console.error("Storyboard debug error:", e);
+    res.status(500).json({ error: "Storyboard API crashed", message: e.message });
   }
 }
