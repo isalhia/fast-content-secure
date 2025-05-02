@@ -1,0 +1,60 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Fast Content AI Portal</title>
+  <style>
+    body {
+      background: black;
+      color: white;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 40px;
+    }
+    .logo {
+      width: 160px;
+      margin-bottom: 30px;
+    }
+    .button {
+      padding: 12px 24px;
+      margin: 10px;
+      font-weight: bold;
+      border-radius: 5px;
+      border: none;
+      cursor: pointer;
+      background: white;
+      color: black;
+    }
+    .tagline {
+      margin-top: 40px;
+      font-size: 16px;
+    }
+    .dot {
+      display: inline-block;
+      height: 12px;
+      width: 12px;
+      background-color: red;
+      border-radius: 50%;
+      margin-left: 8px;
+      animation: pulse 1.5s infinite;
+      vertical-align: middle;
+    }
+    @keyframes pulse {
+      0% { box-shadow: 0 0 5px red; }
+      50% { box-shadow: 0 0 15px red; }
+      100% { box-shadow: 0 0 5px red; }
+    }
+  </style>
+</head>
+<body>
+  <img src="fast-films-logo.png" class="logo" alt="Fast Films Logo"/>
+  <h1>Fast Content AI Portal</h1>
+  <p>Choose your path:</p>
+  <button class="button" onclick="alert('Storyboard Film Generator Activated')">Storyboard Film Generator</button>
+  <button class="button" disabled>Vertical Reel Generator (Coming Soon)</button>
+
+  <div class="tagline">
+    Powered by Fast Films — <em>Let us tell your story.</em><span class="dot"></span>
+  </div>
+</body>
+</html>
