@@ -1,1 +1,0 @@
-// Placeholder for GPT-4o script logic
