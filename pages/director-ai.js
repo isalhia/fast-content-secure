@@ -1,5 +1,3 @@
-
-// pages/director-ai.js
 import Head from "next/head";
 
 export default function DirectorAI() {

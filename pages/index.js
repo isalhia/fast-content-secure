@@ -1,5 +1,3 @@
-
-// pages/index.js
 import Head from "next/head";
 
 export default function Home() {
@@ -9,7 +7,7 @@ export default function Home() {
         <title>Fast Content AI Portal</title>
       </Head>
       <main style={{
-        background: 'black',
+        backgroundColor: 'black',
         color: 'white',
         minHeight: '100vh',
         padding: '4rem',
@@ -17,9 +15,6 @@ export default function Home() {
       }}>
         <h1>🚀 Fast Content AI Portal</h1>
         <p>Powered by Fast Films — <i>Let us tell your story.</i> ●</p>
-        <p style={{ marginTop: '2rem' }}>
-          Use the navigation or buttons below to begin.
-        </p>
       </main>
     </>
   );
