@@ -1,0 +1,30 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Fast Content AI Portal</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="logo-bar">
+    <img src="fast-films-logo.png" alt="Fast Films Logo" class="logo" />
+    <div class="tagline">Powered by Fast Films — <em>let us tell your story.</em><span class="dot"></span></div>
+  </div>
+
+  <main>
+    <h1>Storyboard Film Generator</h1>
+    <textarea id="prompt" placeholder="Enter your idea here..."></textarea>
+    <div class="button-bar">
+      <button onclick="generateStoryline()">Start Storyline</button>
+      <button onclick="generateSummary()">Generate Summary</button>
+      <button onclick="generateScript()">Generate Script</button>
+      <button onclick="generateStoryboard()">Create Storyboard</button>
+    </div>
+    <div id="output"></div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
