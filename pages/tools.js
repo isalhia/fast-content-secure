@@ -1,16 +1,17 @@
-// /pages/tools.js
+
+// pages/tools.js
 import Head from "next/head";
 
-export default function ToolsPage() {
+export default function Tools() {
   return (
     <>
       <Head>
-        <title>AI Tools – Fast Content</title>
+        <title>AI Tools | Fast Content AI</title>
       </Head>
-      <main style={{ background: 'black', color: 'white', padding: '4rem' }}>
-        <h1 style={{ textAlign: 'center' }}>🛠️ AI Tools Dashboard</h1>
+      <main style={{ backgroundColor: 'black', color: 'white', padding: '4rem' }}>
+        <h1 style={{ textAlign: 'center' }}>🛠 AI Tools Dashboard</h1>
         <p style={{ textAlign: 'center' }}>
-          PDF export and LoRA uploader will appear here.
+          This is the tools page. Export PDFs and upload LoRA models here.
         </p>
       </main>
     </>
