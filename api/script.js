@@ -1,0 +1,1 @@
+// Placeholder API file: script.js
