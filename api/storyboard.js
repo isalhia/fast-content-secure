@@ -1,10 +1,13 @@
 export default async function handler(req, res) {
-  if (req.method !== "POST") {
-    return res.status(405).json({ message: "Method Not Allowed" });
+  if (req.method !== 'POST') {
+    return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const { text } = req.body;
-  if (!text) return res.status(400).json({ error: "Missing text input" });
-
-  res.status(200).json({ message: "Storyboard generated", text });
+  try {
+    const { prompt } = req.body;
+    // Replace with actual Stability AI logic
+    res.status(200).json({ message: 'Storyboard image generated', prompt });
+  } catch (error) {
+    res.status(500).json({ error: error.message || 'Internal Server Error' });
+  }
 }
